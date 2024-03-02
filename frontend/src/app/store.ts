@@ -4,6 +4,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import {persistReducer, FLUSH, PAUSE, PERSIST, REHYDRATE, PURGE, REGISTER, persistStore } from "redux-persist";
 import { usersReducer } from '../features/users/usersSlice.ts';
 import { itemsReducer } from '../features/items/itemsSlice.ts';
+import { categoriesReducer } from '../features/categories/categoriesSlice.ts';
 
 
 const usersPersistConfig = {
@@ -12,6 +13,7 @@ const usersPersistConfig = {
   whiteList: ['user'],
 };
 const rootReducer = combineReducers({
+  categories: categoriesReducer,
   items: itemsReducer,
   users: persistReducer(usersPersistConfig, usersReducer),
 });

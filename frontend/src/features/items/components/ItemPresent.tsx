@@ -22,7 +22,7 @@ const ItemPresent: React.FC<Props> = ({item}) => {
         <CardHeader title={item.title}/>
         <ImageCardMedia image={cardImage} title={item.title}/>
         <CardContent>
-          <strong>{item.price} KGS</strong>
+          <strong>{item.price} $</strong>
         </CardContent>
       </Card>
     </Grid>

@@ -56,12 +56,11 @@ export interface ItemInfo{
   image: string;
 }
 export interface ItemMutation {
-  user: string;
   category: string;
   title: string;
   description: string;
   price: string;
-  image: File;
+  image: File | null;
 }
 
 export interface Category {
