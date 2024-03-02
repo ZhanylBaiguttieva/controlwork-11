@@ -41,6 +41,13 @@ export interface LoginMutation {
 
 export interface Item {
   _id: string;
+  title: string;
+  price: number;
+  image: string;
+}
+
+export interface ItemInfo{
+  _id: string;
   user: User;
   category: Category;
   title: string;

@@ -64,7 +64,7 @@ const run = async () => {
             description: 'Custom Apple silicon makes Apple Watch Ultra 2 more capable, easier to use, and faster. The new dual-core CPU has 5.6 billion transistors — 60 percent more than the previous generation. A new four-core Neural Engine processes machine learning tasks up to two times faster.',
             price: 220,
             category: gadgets,
-            image: 'fixtures/food.png',
+            image: 'fixtures/watch.png',
         },
     );
 
