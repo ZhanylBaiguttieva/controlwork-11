@@ -34,13 +34,22 @@ const run = async () => {
             title: 'Technics',
         },
     );
-    const user = await User.create({
-        username: 'userZh',
-        displayName: 'Zhanyl',
-        phone:'+995778163537',
-        password: '111',
-        token: '3f3226f7-84fd-4b9a-a7c0-16802e6aaa7f',
-    });
+    const [user, user2] = await User.create(
+        {
+            username: 'userZh',
+            displayName: 'Zhanyl',
+            phone:'+995778163537',
+            password: '111',
+            token: '3f3226f7-84fd-4b9a-a7c0-16802e6aaa7f',
+        },
+        {
+            username: 'user2',
+            displayName: 'TestUser',
+            phone:'+995778193500',
+            password: '222',
+            token: 'aa16e0a5-c260-48cb-914a-5ebc7803db88',
+        }
+    );
     await Item.create(
         {
             user: user,
@@ -59,13 +68,21 @@ const run = async () => {
             image: 'fixtures/macbook.png',
         },
         {
-            user: user,
+            user: user2,
             title: 'Apple Watch Ultra 2',
             description: 'Custom Apple silicon makes Apple Watch Ultra 2 more capable, easier to use, and faster. The new dual-core CPU has 5.6 billion transistors — 60 percent more than the previous generation. A new four-core Neural Engine processes machine learning tasks up to two times faster.',
             price: 220,
             category: gadgets,
             image: 'fixtures/watch.png',
         },
+        {
+            user: user2,
+            title:'Sumsung S22',
+            description: 'The Samsung Galaxy S22 specs are top-notch including a Snapdragon 8 Gen 1 chipset, 8GB RAM coupled with 128/256GB storage, and a 3700mAh battery with 25W charging speed. ',
+            price: 320,
+            category: technics,
+            image: 'fixtures/galaxy22.png',
+        }
     );
 
     await db.close();
