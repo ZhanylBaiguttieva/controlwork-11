@@ -40,8 +40,8 @@ const ItemSchema = new Schema({
        required: true,
     },
     image: {
-       type:String,
-       required: true,
+        type: String,
+        required: true,
     },
 });
 

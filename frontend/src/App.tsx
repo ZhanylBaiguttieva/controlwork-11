@@ -3,6 +3,7 @@ import AppToolBar from './UI/AppToolBar.tsx';
 import { Route, Routes } from 'react-router-dom';
 import Login from './features/users/components/Login.tsx';
 import Register from './features/users/components/Register.tsx';
+import Items from './features/items/components/Items.tsx';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register />} />
+            <Route path="/" element={<Items />} />
             <Route path="*" element={<h1>Not found</h1>} />
           </Routes>
         </Container>

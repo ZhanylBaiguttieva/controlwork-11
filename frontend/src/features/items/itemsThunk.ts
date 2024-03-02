@@ -11,15 +11,15 @@ export const fetchItems = createAsyncThunk<Item []>(
   }
 );
 
-export const createItem = createAsyncThunk<null, ItemMutation,{state: RootState}>(
+export const createItem = createAsyncThunk<null,ItemMutation,{state: RootState}>(
   'items/create',
-  async (itemtMutation, {getState}) => {
+  async (itemMutation, {getState}) => {
     const token = getState().users.user?.token;
     const formData = new FormData();
 
-    const keys = Object.keys(itemtMutation) as (keyof ItemMutation)[];
+    const keys = Object.keys(itemMutation) as (keyof ItemMutation)[];
     keys.forEach(key => {
-      const value = itemtMutation[key];
+      const value = itemMutation[key];
 
       if (value !== null) {
         formData.append(key, value);
