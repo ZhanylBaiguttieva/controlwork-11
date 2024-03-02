@@ -54,4 +54,31 @@ itemsRouter.get('/:id', async(req,res, next) => {
     }
 });
 
+itemsRouter.delete('/:id', auth, async(req: RequestWithUser,res, next) => {
+    try {
+        let _id: Types.ObjectId;
+        try {
+            _id = new Types.ObjectId(req.params.id);
+        } catch {
+            return res.status(404).send({error: 'Wrong ObjectId!'});
+        }
+        const item = await Item.findById(_id);
+
+        if(!item) {
+            return res.status(404).send({error: 'Item Not found!'});
+        }
+
+        if(item.user.toString() !== req.user?._id.toString()) {
+            return res.status(403).send({error: 'This item not yours!'});
+        }
+
+        const deletedOne = await Item.findByIdAndDelete(_id);
+
+        res.send(deletedOne);
+
+    } catch(e) {
+        next(e);
+    }
+});
+
 export default itemsRouter;
