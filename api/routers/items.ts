@@ -30,7 +30,7 @@ itemsRouter.post(
 });
 
 itemsRouter.get('/', async(req,res,next) => {
-    const items = await Item.find();
+    const items = await Item.find({category: req.query.category});
     res.send(items);
 });
 

@@ -1,7 +1,5 @@
-import { useAppDispatch, useAppSelector } from '../../../app/hooks.ts';
+import { useAppSelector } from '../../../app/hooks.ts';
 import { selectItems } from '../itemsSlice.ts';
-import { useEffect } from 'react';
-import { fetchItems } from '../itemsThunk.ts';
 import {Grid} from '@mui/material';
 import ItemPresent from './ItemPresent.tsx';
 import Categories from '../../categories/Categories.tsx';
@@ -9,12 +7,7 @@ import Categories from '../../categories/Categories.tsx';
 
 const Items = () => {
 
-  const dispatch = useAppDispatch();
   const items = useAppSelector(selectItems);
-
-  useEffect(() => {
-    dispatch(fetchItems());
-  }, [dispatch]);
 
   return (
     <Grid container direction="column" spacing={2}>
