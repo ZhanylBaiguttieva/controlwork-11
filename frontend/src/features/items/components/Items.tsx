@@ -2,8 +2,9 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks.ts';
 import { selectItems } from '../itemsSlice.ts';
 import { useEffect } from 'react';
 import { fetchItems } from '../itemsThunk.ts';
-import {Grid, Typography } from '@mui/material';
+import {Grid} from '@mui/material';
 import ItemPresent from './ItemPresent.tsx';
+import Categories from '../../categories/Categories.tsx';
 
 
 const Items = () => {
@@ -17,11 +18,7 @@ const Items = () => {
 
   return (
     <Grid container direction="column" spacing={2}>
-      <Grid item container justifyContent="space-between" alignItems="center">
-        <Grid item>
-          <Typography variant="h4">All Items</Typography>
-        </Grid>
-      </Grid>
+      <Categories/>
       <Grid item container spacing={2}>
         {items.map(item => (
           <ItemPresent

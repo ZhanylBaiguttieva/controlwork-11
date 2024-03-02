@@ -3,6 +3,7 @@ import {imagesUpload} from "../multer";
 import auth, {RequestWithUser} from "../middleware/auth";
 import Item from "../models/Item";
 import {Types} from "mongoose";
+import category from "../models/Category";
 
 const itemsRouter = Router();
 

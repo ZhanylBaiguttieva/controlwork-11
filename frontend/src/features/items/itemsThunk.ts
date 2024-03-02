@@ -3,6 +3,7 @@ import axiosApi from '../../../axiosApi.ts';
 import { Item, ItemInfo, ItemMutation } from '../../../types';
 import { RootState } from '../../app/store.ts';
 
+
 export const fetchItems = createAsyncThunk<Item []>(
   'items/fetch',
   async() => {
@@ -10,6 +11,7 @@ export const fetchItems = createAsyncThunk<Item []>(
     return response.data;
   }
 );
+
 
 export const createItem = createAsyncThunk<null,ItemMutation,{state: RootState}>(
   'items/create',
