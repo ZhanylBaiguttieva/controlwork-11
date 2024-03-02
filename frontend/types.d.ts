@@ -36,7 +36,5 @@ export interface RegisterMutation {
 
 export interface LoginMutation {
   username: string;
-  displayName: string;
-  phone: string;
   password: string;
 }

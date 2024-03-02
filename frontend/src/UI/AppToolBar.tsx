@@ -20,7 +20,7 @@ const AppToolBar = () => {
       <Toolbar>
         <Grid container justifyContent="space-between" alignItems="center">
           <Typography variant="h6" component="div">
-            <Link to="/">Forum</Link>
+            <Link to="/">Flea Market</Link>
           </Typography>
           { user ? (
             <UserMenu user={user}/>
