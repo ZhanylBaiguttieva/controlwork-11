@@ -38,3 +38,26 @@ export interface LoginMutation {
   username: string;
   password: string;
 }
+
+export interface Item {
+  _id: string;
+  user: User;
+  category: Category;
+  title: string;
+  description: string;
+  price: number;
+  image: string;
+}
+export interface ItemMutation {
+  user: string;
+  category: string;
+  title: string;
+  description: string;
+  price: string;
+  image: File;
+}
+
+export interface Category {
+  _id: string;
+  title: string;
+}
