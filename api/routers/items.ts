@@ -2,7 +2,6 @@ import {Router} from "express";
 import {imagesUpload} from "../multer";
 import auth, {RequestWithUser} from "../middleware/auth";
 import Item from "../models/Item";
-import item from "../models/Item";
 import {Types} from "mongoose";
 
 const itemsRouter = Router();

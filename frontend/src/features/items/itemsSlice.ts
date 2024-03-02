@@ -1,7 +1,7 @@
 import { Item, ItemInfo } from '../../../types';
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store.ts';
-import { createItem, fetchItems, fetchOneItem } from './itemsThunk.ts';
+import { createItem, deleteItem, fetchItems, fetchOneItem } from './itemsThunk.ts';
 
 interface ItemsState {
   items: Item[];
@@ -9,6 +9,7 @@ interface ItemsState {
   fetchLoading: boolean;
   createLoading: boolean;
   fetchOneLoading: boolean;
+  deleteLoading: boolean;
 }
 
 const initialState: ItemsState = {
@@ -17,6 +18,7 @@ const initialState: ItemsState = {
   fetchLoading: false,
   createLoading: false,
   fetchOneLoading: false,
+  deleteLoading: false,
 };
 
 export const itemsSlice = createSlice({
@@ -55,6 +57,16 @@ export const itemsSlice = createSlice({
     builder.addCase(fetchOneItem.rejected, (state) => {
       state.fetchLoading = false;
     });
+
+    builder.addCase(deleteItem.pending, (state) => {
+      state.deleteLoading = true;
+    });
+    builder.addCase(deleteItem.fulfilled, (state) => {
+      state.deleteLoading = false;
+    });
+    builder.addCase(deleteItem.rejected, (state) => {
+      state.deleteLoading = false;
+    });
   },
 });
 
@@ -64,3 +76,4 @@ export const selectItem = (state: RootState) => state.items.item;
 export const selectItemsLoading = (state:RootState) => state.items.fetchLoading;
 export const selectItemCreating = (state:RootState) => state.items.createLoading;
 export const selectOneItemLoading = (state:RootState) => state.items.fetchOneLoading;
+export const selectDeleteLoading = (state: RootState) =>  state.items.deleteLoading;

@@ -1,16 +1,21 @@
 import { useAppDispatch, useAppSelector } from '../../../app/hooks.ts';
-import { selectItem, selectOneItemLoading } from '../itemsSlice.ts';
+import { selectDeleteLoading, selectItem, selectOneItemLoading } from '../itemsSlice.ts';
 
 import { apiURL } from '../../../../constants.ts';
-import {  Box, Card, CardContent, CardMedia, Stack, Typography } from '@mui/material';
-import { useEffect } from 'react';
-import { fetchOneItem } from '../itemsThunk.ts';
-import { useParams } from 'react-router-dom';
+import { Box, Card, CardContent, CardMedia, Stack, Typography } from '@mui/material';
+import React, { useEffect } from 'react';
+import { deleteItem, fetchOneItem } from '../itemsThunk.ts';
+import { useNavigate, useParams } from 'react-router-dom';
+import { selectUser } from '../../users/usersSlice.ts';
+import { LoadingButton } from '@mui/lab';
 
 const ItemInfo = () => {
+  const user = useAppSelector(selectUser);
   const dispatch =useAppDispatch();
+  const navigate = useNavigate();
   const item = useAppSelector(selectItem);
   const isOneLoading = useAppSelector(selectOneItemLoading);
+  const isDeleting = useAppSelector(selectDeleteLoading);
   const {id} = useParams() as {id: string};
 
   useEffect(() => {
@@ -18,6 +23,27 @@ const ItemInfo = () => {
   }, [dispatch, id]);
 
   const cardImage = apiURL + '/' + item?.image;
+
+  const removeItem = async() => {
+    await dispatch(deleteItem(id));
+    navigate('/');
+  };
+
+  let itemButton: React.ReactNode;
+  if(user?.username === item?.user.username) {
+    itemButton = (
+      <Box>
+        <LoadingButton
+          color="primary"
+          onClick={removeItem}
+          loading={isDeleting}
+          disabled={isDeleting}
+        >
+          Delete
+        </LoadingButton>
+      </Box>
+    );
+  }
 
   let itemInfo: React.ReactNode;
   if(!isOneLoading && item) {
@@ -44,6 +70,7 @@ const ItemInfo = () => {
                 image={cardImage}
               />
             </CardContent>
+            {itemButton}
           </Box>
         </Card>
       </Stack>
